@@ -1,7 +1,7 @@
-var $noteTile = $(".note-title");
+var $noteTitle = $(".note-title");
 var $noteText = $(".note-text");
-var $saveNoteBtn = $(".save.note");
-var $newNoteBtn = $(".new-note");
+var $saveNoteBtn = $(".galactic-republic");
+var $newNoteBtn = $(".jedi-order");
 var $noteList = $(".list-container .list-group");
 
 // activeNote is used to keep track of the note in the textarea
