@@ -1,1 +1,9 @@
-[{"title":"Test Title","text":"Test text"}]
+[{
+  "title":"Tribute",
+  "text":"This is not the greatest note in the world, this is just a tribute."
+  },
+  {
+    "title":" Nerd Note",
+    "text":"Mods in PC games can truly enhance gameplay in ways the devs never imagined!"
+  }
+]
