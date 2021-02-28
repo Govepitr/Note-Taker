@@ -25,7 +25,7 @@
   ❓ An application that uses an Express.js back end and will save and retrieve note data from a JSON file.
 
   :loop: Here's a GIF showing it in action:
-  ![demo](./src/demo.gif)
+  ![demo](./src/Demo.gif)
 
   Here's my deployed Heroku app:<br />
   [Click here for fun](https://note-taker59.herokuapp.com/)
