@@ -1,38 +1,38 @@
-const fs = require("fs");
+const fs = require("fs")
+let notes = require("../db/db.json")
+const { v4: uuidv4 } = require('uuid')
 
 module.exports = function(app) {
-  let notes = require("../db/db.json")
 
   app.get("/api/notes", (req, res) => {
-    return res.json(notes)
+    console.log(notes)
+      res.json(notes)
   })
 
   app.get("/api/notes/:id", (req, res) => {
 
-    const id = req.params.id;
-    let found;
+    const id = req.params.id
+    let found
     notes.forEach(n => {
       if (id ==n.id){
-        found = n;
-        return res.json(n)
+        found = n
+         res.json(n)
       }
     })
-    return res.json(false)
+     res.json(false)
   })
   
 
   app.post("/api/notes", (req, res) => {
-    const newNote = req.body;
-    if (notes.length === 0) {
-      newNote.id = 1
-    } else {
-      newNote.id = (notes[notes.length-1].id + 1);
-    }
-    notes.push(newNote);
+    const newNote = req.body
+ 
+      newNote.id = uuidv4()
+   
+    notes.push(newNote)
     let jsonNotes = JSON.stringify(notes)
     fs.writeFile("./db/db.json", jsonNotes, function(err) {
       if (err) {
-        return console.log(err);
+        console.log(err)
       }
       console.log("WOOT! It worked!")
     })
@@ -40,23 +40,18 @@ module.exports = function(app) {
   })
 
   app.delete("/api/notes/:id", (req, res) => {
-    const id = req.params.id;
-    let found;
-    notes.forEach((n, index) => {
-      if(id == n.id){
-        notes.splice(index,1)
-        const notesCopy = notes.slice();
-        let jsonNotes = JSON.stringify(notesCopy)
+    const id = req.params.id
+    let found
+     notes =  notes.filter(note => note.id != id)
+ 
+        let jsonNotes = JSON.stringify(notes)
         fs.writeFile("./db/db.json", jsonNotes, function(err) {
           if (err) {
-            return console.log(err);
+            console.log(err)
           }
-          console.log("ERMERGURHD! It worked!");
+          console.log("ERMERGURHD! It worked!")
         })
-
-      }
-    })
-    res.json(true);
+    res.json(true)
   })
 
 }
