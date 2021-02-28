@@ -152,7 +152,7 @@ const renderNoteList = async (notes) => {
   }
 
   if (jsonNotes.length === 0) {
-    noteListItems.push(createLi('No saved Notes', false))
+    noteListItems.push(createLi('Your notes are in another castle!', false))
   }
 
   jsonNotes.forEach((note) => {
