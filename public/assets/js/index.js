@@ -1,7 +1,7 @@
 var $noteTitle = $(".note-title");
 var $noteText = $(".note-text");
-var $saveNoteBtn = $(".galactic-republic");
-var $newNoteBtn = $(".jedi-order");
+var $saveNoteBtn = $(".jedisave");
+var $newNoteBtn = $(".new-galactic");
 var $noteList = $(".list-container .list-group");
 
 // activeNote is used to keep track of the note in the textarea
@@ -95,7 +95,7 @@ var handleNewNoteView = function() {
 
 // As long as the note's title has text, it will show. Otherwise it will remain hidden
 var handleRenderSaveBtn = function() {
-  if (!$noteTitle.val().trim() || !noteText.val().trim()) {
+  if (!$noteTitle.val().trim() || !$noteText.val().trim()) {
     $saveNoteBtn.hide();
   } else {
     $saveNoteBtn.show();
