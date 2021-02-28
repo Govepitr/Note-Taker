@@ -1,18 +1,69 @@
 const express = require("express");
-
-const PORT = process.env.PORT || 4159;
+// const PORT = process.env.PORT || 4159;
+const path = require("path");
+const fs = require("fs");
 
 const app = express();
+const PORT = 4159;
+const mainDir = path.join(__dirname, "/publib");
 
-
+app.use(express.static('public'));
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
-app.use(express.static('public'));
 
-require("./routes/apirRoutes")(app);
+
+app.get("/notes", function(req, res) {
+  res.sendFile(path.join(mainDir, "notes.html"));
+});
+
+app.get("/api/notes", function(req, res) {
+  res.sendFile(path.join(__dirname, "/db/db.json"));
+});
+
+app.get("/api/notes/:id", function(req, res) {
+  let saveNotes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+  res.json(saveNotes[Number(req.params.id)]);
+});
+
+app.get("*", function(req, res) {
+  res.sendFile(path.join(mainDir, "index.html"));
+});
+
+app.post("/api/notes", function(req, res) {
+  let savedNotes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+  let newNote = req.body;
+  let uniqueID = (savedNotes.length).toString();
+  newNote.id = uniqueID;
+  savedNotes.push(newNote);
+
+  fs.writeFileSync("./db/db.json", JSON.stringify(savedNotes));
+  console.log("Note saved to db.json. Content: ", newNote);
+  res.json(savedNotes);
+})
+
+app.delete("/api/notes/", function(req, res) {
+  let savedNotes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+  let noteID = req.params.id;
+  let newID = 0;
+  console.log(`Deleting note with ID ${noteID}`);
+  savedNotes = savedNotes.filters(currNote => {
+    return currNote.id != noteID;
+  })
+
+  for (currNote of savedNotes) {
+    currNote.id = newID.toString();
+    newID++;
+  }
+
+  fs.writeFileSync("./db/db.json", JSON.stringify(savedNotes));
+  res.json(savedNotes);
+})
+
+
+require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 
-app.listen(port, function() {
-  console.log(`Welcome, to The Grid..I mean Port ${port}. Tron, gotta love it.`);
+app.listen(PORT, function() {
+  console.log(`Welcome, to The Grid..I mean Port ${PORT}. Tron, gotta love it.`);
 })
 
