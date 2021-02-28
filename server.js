@@ -1,7 +1,7 @@
 const express = require("express")
 
 const app = express()
-const PORT = 4159
+const PORT = process.env.PORT || 3005
 
 
 app.use(express.static('public'))
@@ -12,7 +12,7 @@ app.use(express.json())
 require("./routes/apiRoutes")(app)
 require("./routes/htmlRoutes")(app)
 
-app.listen(PORT, function() {
+app.listen(PORT, () => {
   console.log(`Welcome, to The Grid..I mean Port ${PORT}. Tron, gotta love it.`)
 })
 
