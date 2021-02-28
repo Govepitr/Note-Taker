@@ -16,15 +16,20 @@
     <img src="https://img.shields.io/badge/Javascript-yellow" />
     <img src="https://img.shields.io/badge/jQuery-orange" />
     <img src="https://img.shields.io/badge/-node.js-green" />
-    <img src="https://img.shields.io/badge/-inquirer-purple" />
+    <img src="https://img.shields.io/badge/%E2%86%91_Deploy_to-Heroku-7056bf.svg?style=flat" />
     <img src="https://img.shields.io/badge/-screencastify-red" />
-    <img src="https://img.shields.io/badge/-json-orange"" />
+    <img src="https://img.shields.io/badge/-json-orange" />
   </p>
   
   ## Description
   ❓ An application that uses an Express.js back end and will save and retrieve note data from a JSON file.
 
-  
+  :loop: Here's a GIF showing it in action:
+  ![demo](./src/demo.gif)
+
+  Here's my deployed Heroku app:<br />
+  [Click here for fun](https://note-taker59.herokuapp.com/)
+
   ## Table of Contents
   - [Description](#description)
   - [Installation](#installation)
