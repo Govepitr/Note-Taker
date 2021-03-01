@@ -46,10 +46,6 @@
   
   `Express` 
   
-  `Inquirer` 
-  
-  `Jest` 
-  
   `Nodemon` 
   
   `UUID`
