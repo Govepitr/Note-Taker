@@ -44,12 +44,15 @@
   ## Installation
   🚨 
   
-  `Express` 
+  `npm init`
   
-  `Nodemon` 
+  `npm install express` 
   
-  `UUID`
-
+  `npm install -g nodemon` 
+  
+  `npm install UUID`
+  
+  
   ## Usage
   🚀<br/>
   
